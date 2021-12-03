@@ -1,5 +1,7 @@
 import React, {useState} from "react"
 import {FaBars, FaTwitter} from 'react-icons/fa'
+import { links, social } from './data'
+
 
 
  const Navbar = () => {
