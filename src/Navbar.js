@@ -5,18 +5,31 @@ import { links, social } from './data'
 
 
  const Navbar = () => {
-     let screenSize = window.innerWidth 
-     let size = document.querySelector(".screen-size")
-        size.addEventListener("change", console.log(window.innerWidth) )
-     const bodyOnChange = e => {
-
-        console.log(e)
+     let size = document.querySelector("window.innerWidth")
+     console.log("size",size)
+     //  window.innerWidth.addEventListener("change", console.log(window.innerWidth))
+    const [screenSize, setScreenSize] = useState(window.innerWidth)
+    window.onresize = function(){
+        console.log(window.innerWidth)
+        console.log('resize')
+        setScreenSize(window.innerWidth)
     }
+
+    const onSumbitResize = e => {
+        e.preventDefault()
+        window.innerWidth = screenSize
+    }
+
     return(
+        
         <nav>
             <div className="nav-center">
                 <div className="nav-header">
-                    <h1 className="screen-size" onChange={e => bodyOnChange(e)}>{screenSize}</h1>
+                    <form onSubmit={e => onSumbitResize(e)}>
+                        <input type="number" onChange={(e) => setScreenSize(e.target.value)} />
+                        <h1 className="screen-size" >{screenSize}</h1>
+                        <button > changeSize</button>
+                    </form>
                     <img src="https://raw.githubusercontent.com/john-smilga/react-projects/e44b541e002fca44db1e07b2d0a5275824f6d0e6/11-navbar/setup/src/logo.svg" alt="logo" />
                     <button className="nav-toggle">
                         <FaBars/>
